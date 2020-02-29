@@ -1,5 +1,5 @@
 node {
-  git 'https://github.com/Sagar2366/content-terraform-docker.git'
+  git clone 'https://github.com/Sagar2366/content-terraform-docker.git'
   if(action == 'Deploy') {
     stage('init') {
         sh """
