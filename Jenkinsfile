@@ -8,11 +8,9 @@ node {
     }
     stage('plan') {
       bat label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ext_port=${ext_port}"
-      bat {
           timeout(time: 10, unit: 'MINUTES') {
               input(id: "Deploy Gate", message: "Deploy environment?", ok: 'Deploy')
           }
-      }
     }
     stage('apply') {
         bat label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
