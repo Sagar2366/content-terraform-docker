@@ -1,3 +1,8 @@
+
+provider "docker" {
+  host = "tcp://localhost:2375/"
+}
+
 # Download the latest Ghost Image
 resource "docker_image" "image_id" {
   name = "${var.image_name}"
