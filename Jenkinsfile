@@ -22,11 +22,9 @@ node {
       bat label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ext_port=${ext_port}"
     }
     stage('destroy') {
-      bat {
           timeout(time: 10, unit: 'MINUTES') {
               input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
           }
-      }
       bat label: 'Destroy environment', script: "terraform apply -lock=false -input=false tfdestroyplan"
     }
   }
